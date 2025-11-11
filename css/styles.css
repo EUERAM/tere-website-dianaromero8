@@ -17,6 +17,20 @@ h1 {
   text-decoration: none;
   text-transform: none;
 }
+/* Big title */
+.big-title {
+  color: var(--Black, #000);
+  font-family: Inter;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 65.91px; /* 102.985% */
+}
+
+/* prevent specific hero title fragments from wrapping */
+.big-title .nowrap {
+  white-space: nowrap;
+}
 p {
   font-size: 18px;
   font-family: Inter;
@@ -170,4 +184,196 @@ header {
 }
 .text-right .number {
   margin-left: auto;
+}
+
+/* LINK SECTION: container with green background, description left and form right */
+.link {
+  padding: 60px 0;
+}
+.hero .container.hero-row {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: space-between;
+}
+.hero .left-col,
+.hero .right-col {
+  flex: 1 1 50%;
+}
+
+/* hero image styling */
+.hero .right-col .hero-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.link .link-container {
+  background: var(--green);
+  border-radius: 16px;
+  padding: 38px 196px 29px 35px;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  align-items: center;
+  gap: 24px;
+  /* keep a fixed container height to match the button */
+  height: 67px;
+}
+.link .link-left {
+  grid-column: 1 / 2;
+}
+.link .link-right {
+  grid-column: 2 / 3;
+  justify-self: end;
+}
+.link .description {
+  color: var(--white);
+  font-size: 20px;
+  line-height: 28px;
+  margin: 0;
+}
+.join-form {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.join-input {
+  /* match the button height exactly */
+  box-sizing: border-box;
+  height: 67px;
+  padding: 0 16px; /* horizontal padding only so total height stays 67px */
+  /* requested fixed width */
+  width: 499px;
+  max-width: 100%;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+  min-width: 220px;
+  display: inline-block;
+}
+.join-button {
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  background: var(--white);
+  color: var(--green);
+  font-weight: 700;
+  cursor: pointer;
+  height: 67px;
+}
+.join-button:hover {
+  opacity: 0.95;
+}
+
+/* button */
+.apply-button {
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  /* button */
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 0;
+  cursor: pointer;
+  display: flex;
+  width: 260px;
+  height: 67px;
+  /* vertical padding removed so total height stays exactly 67px */
+  padding: 0 28px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: var(--Dark-gray, #272042);
+}
+.apply-button:hover {
+  opacity: 0.9;
+}
+
+/* CTA buttons in hero: match apply-button color & typography */
+.cta-button {
+  background: var(--Dark-gray, #272042);
+  color: #fff;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 0;
+  border: none;
+  border-radius: 10px;
+  height: 67px;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+.cta-button .icon svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+.cta-button .icon-img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
+}
+.cta-button .btn-text {
+  text-transform: uppercase;
+}
+.cta-button .btn-text {
+  text-transform: uppercase;
+}
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+/* make sure hero ctas shrink on small screens */
+@media (max-width: 720px) {
+  .hero-cta {
+    justify-content: center;
+  }
+  .cta-button {
+    width: auto;
+  }
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 720px) {
+  .container {
+    width: calc(100% - 40px);
+    padding: 0 20px;
+  }
+  /* stack hero columns on small screens */
+  .hero .container.hero-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .link .link-container {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    text-align: center;
+    padding: 24px 20px;
+  }
+  .link .link-left {
+    grid-column: 1 / -1;
+  }
+  .link .link-right {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-top: 12px;
+  }
+  .join-form {
+    justify-content: center;
+    width: 100%;
+  }
+  .join-input {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
 }
