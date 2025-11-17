@@ -95,6 +95,11 @@ h3 {
   text-decoration: none;
   text-transform: none;
 }
+/* Corregir h3 para evitar que se aplique el estilo grande/centrado a los h3 del footer */
+h3 {
+  line-height: normal;
+  text-align: left;
+}
 
 /* HEADER */
 header {
@@ -162,6 +167,8 @@ header {
   background-image: url("../img/step.png");
   width: 62px;
   height: 62px;
+  background-size: cover;
+  background-repeat: no-repeat;
   /* text styles */
   color: #75bf7a;
   text-align: center;
@@ -169,21 +176,28 @@ header {
   font-size: 34.108px;
   font-style: normal;
   font-weight: 800;
-  line-height: 37.019px; /* 108.537% */
-  /* to get number into the center */
+  line-height: 37.019px;
+  /* center the number inside the circle */
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.green {
-  color: var(--green);
 }
 .text-right {
   text-align: right;
 }
 .text-right .number {
   margin-left: auto;
+}
+
+/* CORRECCIÓN: Asegurar el ancho correcto para el texto de How It Works */
+/* El texto dentro de las columnas de How It Works debe ocupar el 100% de su columna */
+.how-it-works .col .step p {
+  width: 100%; /* Asegura que no se limite el ancho */
+  max-width: none;
+  text-align: left; /* Restablecer alineación para los párrafos de How It Works */
+}
+.how-it-works .col.text-right .step p {
+  text-align: right; /* Restablecer alineación a la derecha para la columna izquierda */
 }
 
 /* LINK SECTION: container with green background, description left and form right */
@@ -201,6 +215,13 @@ header {
   flex: 1 1 50%;
 }
 
+/* center contents inside the right column (hero image and dots) */
+.hero .right-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* hero image styling */
 .hero .right-col .hero-img {
   max-width: 100%;
@@ -208,16 +229,25 @@ header {
   display: block;
   margin: 0 auto;
 }
-.link .link-container {
+.dots-img {
+  display: block;
+  margin: 59.32px auto 0 auto; /* top spacing of 59.32px as requested */
+  max-width: 100%;
+  height: auto;
+}
+.link .linkbox {
   background: var(--green);
-  border-radius: 16px;
-  padding: 38px 196px 29px 35px;
-  display: grid;
-  grid-template-columns: 25% 75%;
+  display: center;
+  grid-template-columns: 241px 1fr;
   align-items: center;
   gap: 24px;
-  /* keep a fixed container height to match the button */
-  height: 67px;
+  /* remove fixed height so padding is respected */
+  border-radius: 5px;
+  display: inline-flex;
+  padding: 45px 70px;
+  align-items: center;
+  gap: 127px;
+  width: 1278px;
 }
 .link .link-left {
   grid-column: 1 / 2;
@@ -227,9 +257,16 @@ header {
   justify-self: end;
 }
 .link .description {
-  color: var(--white);
-  font-size: 20px;
-  line-height: 28px;
+  /* white text with the exact typographic characteristics requested */
+  color: #fff;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 33px; /* 137.5% */
+  /* occupy 241px and have 70px padding on the left */
+  width: 241px;
+  padding-left: 70px;
   margin: 0;
 }
 .join-form {
@@ -268,7 +305,7 @@ header {
 
 /* button */
 .apply-button {
-  border-radius: 10px;
+  border-radius: 5px; /* CORREGIDO */
   border: none;
   color: #fff;
   /* button */
@@ -294,15 +331,15 @@ header {
 
 /* CTA buttons in hero: match apply-button color & typography */
 .cta-button {
-  background: var(--Dark-gray, #272042);
-  color: #fff;
+  background: var(--black); /* CORREGIDO a negro */
+  color: #ffffff; /* Aseguramos texto blanco */
   font-family: Inter;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: 0;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px; /* CORREGIDO */
   height: 67px;
   padding: 0 20px;
   display: inline-flex;
@@ -323,9 +360,7 @@ header {
 }
 .cta-button .btn-text {
   text-transform: uppercase;
-}
-.cta-button .btn-text {
-  text-transform: uppercase;
+  color: #fff; /* Aseguramos que el texto interno sea blanco */
 }
 .hero-cta {
   display: flex;
@@ -354,7 +389,7 @@ header {
     flex-direction: column;
     gap: 20px;
   }
-  .link .link-container {
+  .link .linkbox {
     grid-template-columns: 1fr;
     align-items: stretch;
     text-align: center;
@@ -376,4 +411,241 @@ header {
     flex: 1 1 auto;
     min-width: 0;
   }
+}
+/* --- TERE BENEFITS SECTION (TARJETAS GRANDES Y ALTERNADAS) --- */
+
+/* 1. Overall Section Container: .tere-benefits */
+.tere-benefits {
+  width: 1440px;
+  margin: 0 auto;
+  padding: 80px 0 100px 0;
+  background-color: var(--background);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Header Styling: .tere-benefits-header */
+.tere-benefits-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.tere-benefits-header h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 47px;
+  font-weight: 900;
+  line-height: 50.346px;
+  color: var(--black); /* Color negro para BENEFITS */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-style: normal;
+}
+/* Estilo específico para la palabra TERE */
+.tere-benefits-header h1 .header-highlight {
+  color: #75bf7a; /* COLOR VERDE SOLO PARA TERE */
+}
+
+/* 2. Grid Layout: .benefits-grid (Contenedor de pila vertical) */
+.benefits-grid {
+  display: flex;
+  flex-direction: column; /* Apila las tarjetas verticalmente */
+  gap: 40px; /* Espacio entre las tarjetas grandes */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0; /* Eliminamos el padding del grid */
+}
+
+/* 3. General Item Styling: .benefit-item (Aplica a TODAS las tarjetas) */
+.benefit-item {
+  /* Dimensiones y estilos de la tarjeta */
+  display: flex;
+  width: 1060px; /* Ancho exacto de Figma */
+  height: 302.82px; /* Altura exacta de Figma */
+  padding: 24px 38px;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #fff;
+}
+
+/* Alineación de las tarjetas (Staggered Layout) */
+.benefit-item-left {
+  margin-left: 20px; /* Pequeño offset */
+  margin-right: auto; /* Empuja el item a la izquierda */
+}
+.benefit-item-right {
+  margin-right: 20px; /* Pequeño offset */
+  margin-left: auto; /* Empuja el item a la derecha */
+}
+
+/* Text Grouping (Número + Título/Descripción) */
+.benefit-text-group {
+  display: flex;
+  align-items: flex-start; /* Alinea el número y el texto en la parte superior */
+  flex-shrink: 0;
+  gap: 10px; /* Espacio entre el número y el contenido (para 01. y 03.) */
+}
+
+/* Faded Number: .benefit-number (ESTILOS ESPECÍFICOS) */
+.benefit-number {
+  color: #75bf7a;
+  font-family: "Inter", sans-serif;
+  font-size: 88px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 118.8px;
+  opacity: 1;
+  position: static;
+}
+
+/* Text Wrapper: .benefit-content */
+.benefit-content {
+  padding-top: 5px; /* Mantiene el padding superior */
+  position: relative;
+  z-index: 2;
+  /* El ancho se aplicará ahora al contenedor interno text-wrapper para mayor especificidad */
+}
+
+/* NUEVA REGLA: Contenedor para Título y Descripción */
+.text-wrapper {
+  display: flex;
+  flex-direction: column; /* Apila el título y la descripción */
+  text-align: left; /* Asegura la alineación izquierda */
+  /* AÑADIDO: Aplicamos el ancho aquí para que solo afecte a BENEFITS */
+  width: 385px;
+}
+
+/* Title: h2 inside .benefit-content (ESTILOS ESPECÍFICOS) */
+.benefit-content h2 {
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-size: 33.943px;
+  font-style: normal;
+  font-weight: 700; /* Mayor peso para destacar */
+  line-height: 32.5px;
+  margin-bottom: 0px; /* Elimina margen inferior */
+  text-transform: none;
+  text-align: left; /* Reafirmamos alineación */
+}
+
+/* Description: p inside .benefit-content (ESTILOS ESPECÍFICOS) */
+.benefit-content p {
+  color: #9e9da2;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  margin-top: 10px; /* Añade margen superior */
+}
+
+/* Image Wrapper: .benefit-image */
+.benefit-image {
+  width: 280px;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-shrink: 0;
+
+  /* Esto empuja la imagen a la derecha del contenedor */
+  margin-right: 0;
+  margin-left: auto; /* Alinea el contenedor a la derecha */
+
+  /* Usamos margin-left para crear la separación con el texto (262px) */
+  padding-left: 0;
+  margin-left: 262px;
+}
+
+/* --- LÓGICA DE ALTERNANCIA (STAGGERED LAYOUT) --- */
+
+/* BENEFIT 2: Alternar la posición (Image | Text) */
+.benefit-item.benefit-alt {
+  flex-direction: row-reverse; /* Invierte la posición */
+}
+
+/* Ajuste de Margen/Padding para el ITEM 2 (invertido) */
+.benefit-item.benefit-alt .benefit-image {
+  margin-left: 0; /* Deshace el auto-margin del general */
+  margin-right: auto; /* Empuja la imagen al extremo IZQUIERDO */
+
+  /* Usamos margin-right para crear la separación con el texto (262px) */
+  padding-right: 0;
+  margin-right: 262px;
+  padding-left: 0;
+}
+
+/* Alineación a la derecha para el texto del Item 2 */
+.benefit-item.benefit-alt .benefit-content,
+.benefit-item.benefit-alt .benefit-content h2,
+.benefit-item.benefit-alt .benefit-content p {
+  text-align: right; /* Alineación del texto y títulos a la derecha */
+}
+
+/* Posiciona el número 02 a la derecha de su contenedor de texto */
+.benefit-item.benefit-alt .benefit-text-group {
+  justify-content: flex-end;
+  gap: 0px; /* Elimina el gap horizontal para que 02. y Earnings estén pegados */
+}
+
+/* Alineación del TEXT WRAPPER en Benefit 2 a la derecha */
+.benefit-item.benefit-alt .text-wrapper {
+  align-items: flex-end; /* Alinea los elementos internos (h2 y p) a la derecha */
+}
+
+/* --- FOOTER SECTION --- */
+.main-footer {
+  padding-top: 50px;
+  background-color: var(--white);
+}
+.footer-row {
+  /* Este es el contenedor Flex principal del footer: Logo + Columnas + Botones */
+  align-items: flex-start; /* Alinea todo arriba */
+  padding-bottom: 50px; /* Espacio antes de la línea de copyright */
+  border-bottom: 1px solid #e0e0e0; /* Línea separadora */
+}
+.footer-logo img {
+  width: 100px; /* Ajusta el tamaño del logo */
+  padding-top: 0; /* Elimina el padding extra que lo bajaba */
+}
+.footer-column-group {
+  /* Contenedor de las dos columnas de texto */
+  gap: 120px; /* Espacio entre las dos columnas de texto */
+}
+.footer-column {
+  /* Estilo para cada columna de texto */
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Espacio entre líneas de texto */
+}
+.footer-column h3 {
+  /* Estilo específico para los títulos del footer */
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: none;
+  line-height: 25px;
+  margin-bottom: 12px;
+}
+.footer-column p {
+  /* Estilo específico para el texto del footer */
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--light-gray);
+}
+.footer-buttons {
+  /* Contenedor de los dos botones (Google Play / App Store) */
+  gap: 16px;
+  align-items: center;
+}
+.all-rights-reserved {
+  text-align: center;
+  padding: 20px 0;
+  background-color: var(--white); /* Fondo blanco */
+}
+.all-rights-reserved .small {
+  /* Estilo para el texto de copyright */
+  color: var(--light-gray);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
 }
